@@ -226,7 +226,7 @@ func (helm *CliHelm) UpgradeRelease(releaseName string, chart string, valuesPath
 	if err != nil {
 		return fmt.Errorf("helm upgrade failed: %s:\n%s %s", err, stdout, stderr)
 	}
-	rlog.Infof("Helm upgrade for release '%s' with chart '%s' in namespace '%s' successful:\n%s\n%s", releaseName, chart, namespace, stdout, stderr)
+	rlog.Infof("Helm upgrade for release '%s' with chart '%s' in namespace '%s' was successful:\n%s\n%s", releaseName, chart, namespace, stdout, stderr)
 
 	return nil
 }

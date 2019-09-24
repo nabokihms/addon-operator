@@ -200,11 +200,11 @@ func (m *Module) runHelmInstall() error {
 	if doRelease {
 		rlog.Debugf("MODULE_RUN '%s': helm release '%s' checksum '%s': installing/upgrading release", m.Name, helmReleaseName, checksum)
 
-		return helm.Client.UpgradeRelease(
+		werfCl := helm.NewWerfClient(helm.WerfOptions{})
+		return werfCl.DeployChart(
 			helmReleaseName, runChartPath,
 			[]string{valuesPath},
 			[]string{fmt.Sprintf("_addonOperatorModuleChecksum=%s", checksum)},
-			//helm.Client.TillerNamespace(),
 			app.Namespace,
 		)
 	} else {
